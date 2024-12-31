@@ -2,7 +2,7 @@ import Heading from "../../components/Heading";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import ReviewCard from "../../components/ReviewCard";
 
@@ -23,7 +23,15 @@ const Testimonials = () => {
       ></Heading>
 
       <div className="mt-10">
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+        <Swiper
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          navigation={true}
+          modules={[Autoplay, Navigation]}
+          className="mySwiper"
+        >
           {reviews.map((review) => (
             <SwiperSlide key={review._id}>
               <ReviewCard review={review}></ReviewCard>
