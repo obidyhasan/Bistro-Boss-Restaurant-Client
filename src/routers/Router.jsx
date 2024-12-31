@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 
 import PropTypes from "prop-types";
-import Home from "../pages/Home";
+import Home from "../pages/Home/Home";
 
 const routers = createBrowserRouter([
   {
