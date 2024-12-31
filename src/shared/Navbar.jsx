@@ -1,8 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+const navbarLink = (
+  <div className="flex flex-col lg:flex-row gap-3 lg:gap-5">
+    <NavLink
+      to={"/"}
+      className={({ isActive }) =>
+        isActive
+          ? "text-black lg:text-white underline"
+          : "text-black lg:text-white"
+      }
+    >
+      Home
+    </NavLink>
+    <NavLink
+      to={"/menus"}
+      className={({ isActive }) =>
+        isActive
+          ? "text-black lg:text-white underline"
+          : "text-black lg:text-white"
+      }
+    >
+      Menus
+    </NavLink>
+  </div>
+);
 
 const Navbar = () => {
   return (
-    <div className="fixed z-10 w-full bg-[#15151586] ">
+    <div className="fixed z-10 w-full bg-[#151515ad] ">
       <div className="font-inter max-w-7xl mx-auto px-5">
         <div className="navbar px-0">
           <div className="navbar-start">
@@ -31,23 +56,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
-                <li>
-                  <a>Item 1</a>
-                </li>
-                <li>
-                  <a>Parent</a>
-                  <ul className="p-2">
-                    <li>
-                      <a>Submenu 1</a>
-                    </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a>Item 3</a>
-                </li>
+                {navbarLink}
               </ul>
             </div>
             <Link to={"/"} className="text-white">
@@ -60,27 +69,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <details>
-                  <summary>Parent</summary>
-                  <ul className="p-2">
-                    <li>
-                      <a>Submenu 1</a>
-                    </li>
-                    <li>
-                      <a>Submenu 2</a>
-                    </li>
-                  </ul>
-                </details>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
-            </ul>
+            <ul className="menu menu-horizontal px-1">{navbarLink}</ul>
           </div>
           <div className="navbar-end">
             <a className="btn">Button</a>

@@ -1,0 +1,9 @@
+/* Center the thumbnail container */
+.carousel .thumbs-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-pagination {
+  margin-bottom: -5px; /* Adjust margin as needed */
+}
