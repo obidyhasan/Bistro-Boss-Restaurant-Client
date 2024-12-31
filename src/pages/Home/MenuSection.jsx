@@ -14,6 +14,10 @@ const MenuSection = () => {
         <MenuCard></MenuCard>
         <MenuCard></MenuCard>
       </div>
+
+      <div className="text-center mt-10">
+        <button className="btn">View Full Menu</button>
+      </div>
     </div>
   );
 };

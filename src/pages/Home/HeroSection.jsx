@@ -17,22 +17,22 @@ const HeroSection = () => {
         interval={3000}
         showStatus={false}
       >
-        <div className="h-[700px] xl:min-h-screen">
+        <div className="h-[500px] sm:h-[700px] xl:min-h-screen">
           <img src={img1} className="w-full h-full object-cover" />
         </div>
-        <div className="h-[700px] xl:min-h-screen">
+        <div className="h-[500px] sm:h-[700px] xl:min-h-screen">
           <img src={img2} className="w-full h-full object-cover" />
         </div>
-        <div className="h-[700px] xl:min-h-screen">
+        <div className="h-[500px] sm:h-[700px] xl:min-h-screen">
           <img src={img3} className="w-full h-full object-cover" />
         </div>
-        <div className="h-[700px] xl:min-h-screen">
+        <div className="h-[500px] sm:h-[700px] xl:min-h-screen">
           <img src={img4} className="w-full h-full object-cover" />
         </div>
-        <div className="h-[700px] xl:min-h-screen">
+        <div className="h-[500px] sm:h-[700px] xl:min-h-screen">
           <img src={img5} className="w-full h-full object-cover" />
         </div>
-        <div className="h-[700px] xl:min-h-screen">
+        <div className="h-[500px] sm:h-[700px] xl:min-h-screen">
           <img src={img6} className="w-full h-full object-cover" />
         </div>
       </Carousel>
