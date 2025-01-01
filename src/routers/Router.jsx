@@ -4,6 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 import PropTypes from "prop-types";
 import Home from "../pages/Home/Home";
 import MenuPage from "../pages/Menu/MenuPage";
+import OurShop from "../pages/Shop/OurShop";
 
 const routers = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const routers = createBrowserRouter([
       {
         path: "/menus",
         element: <MenuPage></MenuPage>,
+      },
+      {
+        path: "/shops/:category",
+        element: <OurShop></OurShop>,
       },
     ],
   },

@@ -22,6 +22,16 @@ const navbarLink = (
     >
       Menus
     </NavLink>
+    <NavLink
+      to={"/shops/salad"}
+      className={({ isActive }) =>
+        isActive
+          ? "text-black lg:text-white underline"
+          : "text-black lg:text-white"
+      }
+    >
+      Our Shop
+    </NavLink>
   </div>
 );
 

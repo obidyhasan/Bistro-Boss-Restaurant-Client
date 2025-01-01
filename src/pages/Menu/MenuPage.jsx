@@ -35,7 +35,10 @@ const MenuPage = () => {
         <Heading subHeading={"Don't miss"} heading={"Today's Offer"}></Heading>
         <MenuCardSection categoryItem={"offered"}></MenuCardSection>
         <div className="text-center">
-          <Link className=" border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg">
+          <Link
+            to={"/shops/salad"}
+            className=" border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg"
+          >
             Order Your Favorite Food
           </Link>
         </div>
@@ -54,8 +57,11 @@ const MenuPage = () => {
           <MenuCardSection categoryItem={"dessert"}></MenuCardSection>
 
           <div className="text-center mb-10">
-            <Link className=" border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg">
-              Order Your Favorite Food
+            <Link
+              to={"/shops/dessert"}
+              className=" border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg"
+            >
+              Order Desserts Foods
             </Link>
           </div>
         </div>
@@ -74,8 +80,11 @@ const MenuPage = () => {
           <MenuCardSection categoryItem={"pizza"}></MenuCardSection>
 
           <div className="text-center mb-10">
-            <Link className=" border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg">
-              Order Your Favorite Food
+            <Link
+              to={"/shops/pizza"}
+              className=" border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg"
+            >
+              Order Pizza Foods
             </Link>
           </div>
         </div>
@@ -93,8 +102,11 @@ const MenuPage = () => {
           <MenuCardSection categoryItem={"salad"}></MenuCardSection>
 
           <div className="text-center mb-10">
-            <Link className=" border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg">
-              Order Your Favorite Food
+            <Link
+              to={"/shops/salad"}
+              className=" border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg"
+            >
+              Order Salad Foods
             </Link>
           </div>
         </div>
@@ -112,8 +124,11 @@ const MenuPage = () => {
           <MenuCardSection categoryItem={"soup"}></MenuCardSection>
 
           <div className="text-center mb-10">
-            <Link className=" border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg">
-              Order Your Favorite Food
+            <Link
+              to={"/shops/soup"}
+              className=" border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg"
+            >
+              Order Soup Foods
             </Link>
           </div>
         </div>

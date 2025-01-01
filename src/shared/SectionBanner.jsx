@@ -24,7 +24,7 @@ const SectionBanner = ({ title, description, img }) => {
 SectionBanner.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  img: PropTypes.element,
+  img: PropTypes.string,
 };
 
 export default SectionBanner;
