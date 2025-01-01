@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 
 import PropTypes from "prop-types";
 import Home from "../pages/Home/Home";
+import MenuPage from "../pages/Menu/MenuPage";
 
 const routers = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const routers = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/menus",
+        element: <MenuPage></MenuPage>,
       },
     ],
   },
