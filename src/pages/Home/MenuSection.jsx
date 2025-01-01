@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Heading from "../../components/Heading";
 import MenuCard from "../../components/MenuCard";
 import useMenu from "../../hooks/useMenu";
@@ -17,9 +18,12 @@ const MenuSection = () => {
       </div>
 
       <div className="text-center mt-10">
-        <button className="border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg">
+        <Link
+          to={"/menus"}
+          className="border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg"
+        >
           View Full Menu
-        </button>
+        </Link>
       </div>
     </div>
   );
