@@ -7,10 +7,15 @@ import soupsBg from "../../assets/menu/soup-bg.jpg";
 import Heading from "../../components/Heading";
 import MenuCardSection from "../../components/MenuCardSection";
 import SectionBanner from "../../shared/SectionBanner";
+import { Helmet } from "react-helmet-async";
 
 const MenuPage = () => {
   return (
     <div>
+      <Helmet>
+        <title>Menus | Bistro Boss</title>
+      </Helmet>
+
       <div
         className="hero min-h-[600px]"
         style={{
