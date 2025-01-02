@@ -1,41 +1,44 @@
 import { Link, NavLink } from "react-router-dom";
-
-const navbarLink = (
-  <div className="flex flex-col lg:flex-row gap-3 lg:gap-5">
-    <NavLink
-      to={"/"}
-      className={({ isActive }) =>
-        isActive
-          ? "text-black lg:text-white underline"
-          : "text-black lg:text-white"
-      }
-    >
-      Home
-    </NavLink>
-    <NavLink
-      to={"/menus"}
-      className={({ isActive }) =>
-        isActive
-          ? "text-black lg:text-white underline"
-          : "text-black lg:text-white"
-      }
-    >
-      Menus
-    </NavLink>
-    <NavLink
-      to={"/shops/salad"}
-      className={({ isActive }) =>
-        isActive
-          ? "text-black lg:text-white underline"
-          : "text-black lg:text-white"
-      }
-    >
-      Our Shop
-    </NavLink>
-  </div>
-);
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
+  const { user } = useAuth();
+
+  const navbarLink = (
+    <div className="flex flex-col lg:flex-row gap-3 lg:gap-5">
+      <NavLink
+        to={"/"}
+        className={({ isActive }) =>
+          isActive
+            ? "text-black lg:text-white underline"
+            : "text-black lg:text-white"
+        }
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to={"/menus"}
+        className={({ isActive }) =>
+          isActive
+            ? "text-black lg:text-white underline"
+            : "text-black lg:text-white"
+        }
+      >
+        Menus
+      </NavLink>
+      <NavLink
+        to={"/shops/salad"}
+        className={({ isActive }) =>
+          isActive
+            ? "text-black lg:text-white underline"
+            : "text-black lg:text-white"
+        }
+      >
+        Our Shop
+      </NavLink>
+    </div>
+  );
+
   return (
     <div className="fixed z-10 w-full bg-[#151515ad] ">
       <div className="font-inter max-w-7xl mx-auto px-5">
@@ -82,7 +85,13 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{navbarLink}</ul>
           </div>
           <div className="navbar-end">
-            <a className="btn">Button</a>
+            {user ? (
+              <button className="btn">Logout</button>
+            ) : (
+              <Link to={"/login"} className="btn">
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>

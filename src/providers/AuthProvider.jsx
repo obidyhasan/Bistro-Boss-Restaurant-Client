@@ -24,28 +24,28 @@ const AuthProvider = ({ children }) => {
     userProfileUpdateInFirebase,
   };
 
-  const userLoginInFirebase = (email, password) => {
+  function userLoginInFirebase(email, password) {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
-  };
+  }
 
-  const userRegisterInFirebase = (email, password) => {
+  function userRegisterInFirebase(email, password) {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
-  };
+  }
 
-  const userLogoutInFirebase = () => {
+  function userLogoutInFirebase() {
     setLoading(true);
     return signOut(auth);
-  };
+  }
 
-  const userProfileUpdateInFirebase = (name, photo) => {
+  function userProfileUpdateInFirebase(name, photo) {
     setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
     });
-  };
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
