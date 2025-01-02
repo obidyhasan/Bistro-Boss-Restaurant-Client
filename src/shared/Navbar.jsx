@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, userLogoutInFirebase } = useAuth();
 
   const navbarLink = (
     <div className="flex flex-col lg:flex-row gap-3 lg:gap-5">
@@ -86,7 +86,9 @@ const Navbar = () => {
           </div>
           <div className="navbar-end">
             {user ? (
-              <button className="btn">Logout</button>
+              <button onClick={userLogoutInFirebase} className="btn">
+                Logout
+              </button>
             ) : (
               <Link to={"/login"} className="btn">
                 Login
