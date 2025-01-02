@@ -5,13 +5,15 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import useAuth from "../../hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { showSweetAlert } from "../../utility/showSweetAlert";
 
 const Login = () => {
   const { userLoginInFirebase } = useAuth();
   const [disable, setDisable] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from || "/";
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -33,7 +35,7 @@ const Login = () => {
     userLoginInFirebase(email, password)
       .then(() => {
         showSweetAlert("success", "User Login Successfully");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
