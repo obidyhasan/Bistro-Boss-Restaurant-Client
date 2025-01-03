@@ -1,9 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { MdOutlineShoppingBag } from "react-icons/md";
+import useCart from "../hooks/useCart";
 
 const Navbar = () => {
   const { user, userLogoutInFirebase } = useAuth();
+  const [cart] = useCart();
 
   const navbarLink = (
     <div className="flex flex-col lg:flex-row gap-3 lg:gap-5">
@@ -98,7 +100,7 @@ const Navbar = () => {
           <div className="navbar-end flex gap-3">
             <button className="btn btn-ghost text-white border-white">
               <MdOutlineShoppingBag className="text-3xl"></MdOutlineShoppingBag>
-              <div className="badge">0</div>
+              <div className="badge">{cart.length}</div>
             </button>
             {user ? (
               <button onClick={userLogoutInFirebase} className="btn">

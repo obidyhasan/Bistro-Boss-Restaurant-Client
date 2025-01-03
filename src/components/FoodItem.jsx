@@ -3,6 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { showSweetAlert } from "../utility/showSweetAlert";
+import useCart from "../hooks/useCart";
 
 const FoodItem = ({ food }) => {
   const { user } = useAuth();
@@ -10,6 +11,7 @@ const FoodItem = ({ food }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosSecure();
+  const [, refetch] = useCart();
 
   function handelAddToCart() {
     if (user && user?.email) {
@@ -23,6 +25,7 @@ const FoodItem = ({ food }) => {
 
       axiosSecure.post("/api/carts", cartInfo).then((result) => {
         if (result.data.insertedId) {
+          refetch();
           showSweetAlert("success", "Add to cart");
         }
       });
