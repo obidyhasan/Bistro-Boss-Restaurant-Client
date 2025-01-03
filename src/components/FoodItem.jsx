@@ -1,7 +1,20 @@
 import PropTypes from "prop-types";
+import useAuth from "../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FoodItem = ({ food }) => {
+  const { user } = useAuth();
   const { name, image, price, recipe, category } = food;
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  function handelAddToCart() {
+    if (user && user?.email) {
+      console.log("Add to cart");
+    } else {
+      navigate("/login", { state: { from: location.pathname } });
+    }
+  }
 
   return (
     <div>
@@ -17,8 +30,11 @@ const FoodItem = ({ food }) => {
         <div className="badge">{category}</div>
         <h2 className="font-semibold text-lg">{name}</h2>
         <p className="line-clamp-2">{recipe}</p>
-        <button className="border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg text-yellow-600 border-yellow-600">
-          View Full Menu
+        <button
+          onClick={handelAddToCart}
+          className="border-b-4 btn btn-outline border-x-0 border-t-0 shadow-lg text-yellow-600 border-yellow-600"
+        >
+          Order Now
         </button>
       </div>
     </div>
