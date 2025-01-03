@@ -1,16 +1,31 @@
 import PropTypes from "prop-types";
 import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { showSweetAlert } from "../utility/showSweetAlert";
 
 const FoodItem = ({ food }) => {
   const { user } = useAuth();
-  const { name, image, price, recipe, category } = food;
+  const { name, image, price, recipe, category, _id } = food;
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosSecure = useAxiosSecure();
 
   function handelAddToCart() {
     if (user && user?.email) {
-      console.log("Add to cart");
+      const cartInfo = {
+        menuId: _id,
+        userEmail: user.email,
+        name,
+        image,
+        price,
+      };
+
+      axiosSecure.post("/api/carts", cartInfo).then((result) => {
+        if (result.data.insertedId) {
+          showSweetAlert("success", "Add to cart");
+        }
+      });
     } else {
       navigate("/login", { state: { from: location.pathname } });
     }
