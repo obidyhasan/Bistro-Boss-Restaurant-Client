@@ -98,10 +98,13 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{navbarLink}</ul>
           </div>
           <div className="navbar-end flex gap-3">
-            <button className="btn btn-ghost text-white border-white">
+            <Link
+              to={user?.email && "/dashboard/cart"}
+              className="btn btn-ghost text-white border-white"
+            >
               <MdOutlineShoppingBag className="text-3xl"></MdOutlineShoppingBag>
               <div className="badge">{cart.length}</div>
-            </button>
+            </Link>
             {user ? (
               <button onClick={userLogoutInFirebase} className="btn">
                 Logout
