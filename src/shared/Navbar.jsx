@@ -39,16 +39,6 @@ const Navbar = () => {
       >
         Our Shop
       </NavLink>
-      <NavLink
-        to={"/order"}
-        className={({ isActive }) =>
-          isActive
-            ? "text-black lg:text-white underline"
-            : "text-black lg:text-white"
-        }
-      >
-        My Order
-      </NavLink>
     </div>
   );
 

@@ -2,10 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { showSweetAlert } from "../../utility/showSweetAlert";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
   const { userRegisterInFirebase, userProfileUpdateInFirebase } = useAuth();
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -17,9 +19,21 @@ const Register = () => {
     userRegisterInFirebase(data.email, data.password)
       .then(() => {
         userProfileUpdateInFirebase(data.name, data.photo).then(() => {
-          reset();
-          showSweetAlert("success", "Register Successfully");
-          navigate("/");
+          // Create user entry in the database
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+
+          axiosPublic
+            .post("/api/users", userInfo)
+            .then((result) => {
+              console.log(result.data);
+              reset();
+              showSweetAlert("success", "Register Successfully");
+              navigate("/");
+            })
+            .catch((error) => console.log(error));
         });
       })
       .catch((error) => {
