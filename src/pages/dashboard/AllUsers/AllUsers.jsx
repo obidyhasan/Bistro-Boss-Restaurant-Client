@@ -3,6 +3,7 @@ import { FaUsers } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { showSweetAlert } from "../../../utility/showSweetAlert";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -15,6 +16,30 @@ const AllUsers = () => {
       return result.data;
     },
   });
+
+  function handelUserToAdmin(user) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, update user to admin",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .patch(`/api/user/admin/${user._id}`)
+          .then((result) => {
+            if (result.data.modifiedCount) {
+              refetch();
+              showSweetAlert("success", "Update user to admin successfully");
+            }
+          })
+          .catch((error) => console.log(error));
+      }
+    });
+  }
 
   function handelUserDelete(user) {
     Swal.fire({
@@ -65,9 +90,16 @@ const AllUsers = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
-                    <button className="btn">
-                      <FaUsers className="text-xl"></FaUsers>
-                    </button>
+                    {user?.role ? (
+                      <p>Admin</p>
+                    ) : (
+                      <button
+                        onClick={() => handelUserToAdmin(user)}
+                        className="btn"
+                      >
+                        <FaUsers className="text-xl"></FaUsers>
+                      </button>
+                    )}
                   </td>
                   <td>
                     <button

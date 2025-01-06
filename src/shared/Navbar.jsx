@@ -89,7 +89,7 @@ const Navbar = () => {
           </div>
           <div className="navbar-end flex gap-3">
             <Link
-              to={user?.email && "/dashboard/cart"}
+              to={user?.email && "/dashboard/user/cart"}
               className="btn btn-ghost text-white border-white"
             >
               <MdOutlineShoppingBag className="text-3xl"></MdOutlineShoppingBag>
