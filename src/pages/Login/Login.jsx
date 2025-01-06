@@ -7,6 +7,7 @@ import {
 import useAuth from "../../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { showSweetAlert } from "../../utility/showSweetAlert";
+import SocialMedia from "../../components/SocialMedia";
 
 const Login = () => {
   const { userLoginInFirebase } = useAuth();
@@ -106,6 +107,10 @@ const Login = () => {
             Register
           </Link>
         </p>
+
+        <div className="px-8 pb-5 -mt-4">
+          <SocialMedia></SocialMedia>
+        </div>
       </div>
     </div>
   );

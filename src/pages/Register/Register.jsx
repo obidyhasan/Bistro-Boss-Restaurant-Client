@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { showSweetAlert } from "../../utility/showSweetAlert";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialMedia from "../../components/SocialMedia";
 
 const Register = () => {
   const { userRegisterInFirebase, userProfileUpdateInFirebase } = useAuth();
@@ -122,6 +123,10 @@ const Register = () => {
             Login
           </Link>
         </p>
+
+        <div className="px-8 pb-5 -mt-4">
+          <SocialMedia></SocialMedia>
+        </div>
       </div>
     </div>
   );
