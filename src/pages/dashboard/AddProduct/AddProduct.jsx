@@ -1,10 +1,41 @@
 import { useForm } from "react-hook-form";
 import Heading from "../../../components/Heading";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { showSweetAlert } from "../../../utility/showSweetAlert";
+
+const image_hosting_key = import.meta.env.VITE_IMG_HOSTING_API_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddProduct = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const { register, handleSubmit, reset } = useForm();
+  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
+
+  const onSubmit = async (data) => {
+    // image upload to img-bb and then get and url
+    const imageFile = { image: data.image[0] };
+
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    if (res.data.success) {
+      const productInfo = {
+        name: data.name,
+        image: res.data.data.display_url,
+        category: data.category,
+        price: parseFloat(data.price),
+        recipe: data.recipe,
+      };
+
+      const result = await axiosSecure.post("/api/menus", productInfo);
+      if (result.data.insertedId) {
+        reset();
+        showSweetAlert("success", "Item added successfully");
+      }
+    }
   };
 
   return (

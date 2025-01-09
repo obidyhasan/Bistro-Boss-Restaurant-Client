@@ -91,7 +91,11 @@ const routers = createBrowserRouter([
       },
       {
         path: "/dashboard/admin/add-item",
-        element: <AddProduct></AddProduct>,
+        element: (
+          <AdminRouter>
+            <AddProduct></AddProduct>
+          </AdminRouter>
+        ),
       },
       {
         path: "/dashboard/admin/manage-item",
