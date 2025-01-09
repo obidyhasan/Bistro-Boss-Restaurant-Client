@@ -5,10 +5,11 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import { BiSolidFoodMenu } from "react-icons/bi";
 import useCart from "../hooks/useCart";
 import { FaHome, FaUsers } from "react-icons/fa";
+import useAdmin from "../hooks/useAdmin";
 
 const DashboardLayout = () => {
   const [cart] = useCart();
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="flex bg-base-200">
