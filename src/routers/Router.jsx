@@ -13,6 +13,7 @@ import Cart from "../pages/dashboard/Cart/Cart";
 import AllUsers from "../pages/dashboard/AllUsers/AllUsers";
 import AdminRouter from "./AdminRouter";
 import AddProduct from "../pages/dashboard/AddProduct/AddProduct";
+import ManageAllProduct from "../pages/dashboard/ManageAllProduct/ManageAllProduct";
 
 const routers = createBrowserRouter([
   {
@@ -99,7 +100,11 @@ const routers = createBrowserRouter([
       },
       {
         path: "/dashboard/admin/manage-item",
-        element: <h1>manage item</h1>,
+        element: (
+          <AdminRouter>
+            <ManageAllProduct></ManageAllProduct>
+          </AdminRouter>
+        ),
       },
       {
         path: "/dashboard/admin/manage-booking",
