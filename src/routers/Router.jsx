@@ -14,6 +14,7 @@ import AllUsers from "../pages/dashboard/AllUsers/AllUsers";
 import AdminRouter from "./AdminRouter";
 import AddProduct from "../pages/dashboard/AddProduct/AddProduct";
 import ManageAllProduct from "../pages/dashboard/ManageAllProduct/ManageAllProduct";
+import UpdateProduct from "../pages/dashboard/UpdateProduct/UpdateProduct";
 
 const routers = createBrowserRouter([
   {
@@ -105,6 +106,16 @@ const routers = createBrowserRouter([
             <ManageAllProduct></ManageAllProduct>
           </AdminRouter>
         ),
+      },
+      {
+        path: "/dashboard/admin/update-product/:id",
+        element: (
+          <AdminRouter>
+            <UpdateProduct></UpdateProduct>
+          </AdminRouter>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/api/menus/${params.id}`),
       },
       {
         path: "/dashboard/admin/manage-booking",
