@@ -15,6 +15,8 @@ import AdminRouter from "./AdminRouter";
 import AddProduct from "../pages/dashboard/AddProduct/AddProduct";
 import ManageAllProduct from "../pages/dashboard/ManageAllProduct/ManageAllProduct";
 import UpdateProduct from "../pages/dashboard/UpdateProduct/UpdateProduct";
+import Payment from "../pages/dashboard/Payment/Payment";
+import PaymentHistory from "../pages/dashboard/PaymentHistory/PaymentHistory";
 
 const routers = createBrowserRouter([
   {
@@ -65,10 +67,7 @@ const routers = createBrowserRouter([
         path: "/dashboard/user/reservation",
         element: <h1>Reservation</h1>,
       },
-      {
-        path: "/dashboard/user/payment-history",
-        element: <h1>Payment History</h1>,
-      },
+
       {
         path: "/dashboard/user/add-review",
         element: <h1>Add Review</h1>,
@@ -76,6 +75,14 @@ const routers = createBrowserRouter([
       {
         path: "/dashboard/user/my-booking",
         element: <h1>My Booking</h1>,
+      },
+      {
+        path: "/dashboard/user/payment",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "/dashboard/user/payment-history",
+        element: <PaymentHistory></PaymentHistory>,
       },
 
       // admin access

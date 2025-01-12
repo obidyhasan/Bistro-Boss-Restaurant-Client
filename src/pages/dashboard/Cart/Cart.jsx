@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useCart from "../../../hooks/useCart";
 import { MdDelete } from "react-icons/md";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
@@ -39,9 +40,13 @@ const Cart = () => {
       <div className="flex items-center justify-between gap-5">
         <h2 className="font-semibold text-lg">Total Order: {cart.length}</h2>
         <h2 className="font-semibold text-lg">Total Price: $ {totalPrice}</h2>
-        <button disabled={cart.length ? false : true} className="btn">
+        <Link
+          to={"/dashboard/user/payment"}
+          disabled={cart.length ? false : true}
+          className="btn"
+        >
           Pay
-        </button>
+        </Link>
       </div>
 
       <div>
