@@ -3,15 +3,18 @@ import { useEffect, useState } from "react";
 import useCart from "../../../hooks/useCart";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { showSweetAlert } from "../../../utility/showSweetAlert";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState(null);
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const [clientSecret, setClientSecret] = useState();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
@@ -66,6 +69,25 @@ const CheckoutForm = () => {
       console.log("confirm error", confirmError);
     } else {
       console.log("payment intent is success", paymentIntent);
+
+      if (paymentIntent.status === "succeeded") {
+        const payment = {
+          email: user.email,
+          price: totalPrice,
+          transactionId: paymentIntent.id,
+          data: new Date(), // utc data convert. use moment js to
+          cartIds: cart.map((item) => item._id),
+          menuItemIds: cart.map((item) => item.menuId),
+          status: "pending",
+        };
+
+        const res = await axiosSecure.post("/api/payments", payment);
+        if (res.data?.paymentResult?.insertedId) {
+          showSweetAlert("success", "Thank you for Buy Our Product");
+        }
+        refetch();
+        navigate("/dashboard/user/payment-history");
+      }
     }
   };
 
