@@ -21,7 +21,6 @@ const Cart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/api/carts/${id}`).then((result) => {
-          console.log(result);
           if (result.data.deletedCount) {
             Swal.fire({
               title: "Deleted!",
@@ -40,7 +39,9 @@ const Cart = () => {
       <div className="flex items-center justify-between gap-5">
         <h2 className="font-semibold text-lg">Total Order: {cart.length}</h2>
         <h2 className="font-semibold text-lg">Total Price: $ {totalPrice}</h2>
-        <button className="btn">Pay</button>
+        <button disabled={cart.length ? false : true} className="btn">
+          Pay
+        </button>
       </div>
 
       <div>
