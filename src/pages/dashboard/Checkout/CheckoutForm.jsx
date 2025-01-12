@@ -1,9 +1,4 @@
-import {
-  CardElement,
-  PaymentElement,
-  useElements,
-  useStripe,
-} from "@stripe/react-stripe-js";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useCart from "../../../hooks/useCart";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -29,7 +24,7 @@ const CheckoutForm = () => {
           setClientSecret(res.data.clientSecret);
         });
     }
-  });
+  }, [axiosSecure, totalPrice]);
 
   const handelSubmit = async (event) => {
     event.preventDefault();
@@ -40,7 +35,7 @@ const CheckoutForm = () => {
 
     const card = elements.getElement(CardElement);
 
-    if (card == null) return;
+    if (card === null) return;
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -59,9 +54,10 @@ const CheckoutForm = () => {
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
+          card: card,
           billing_details: {
-            name: user.displayName || "anonymous",
-            email: user.email || "anonymous",
+            name: user?.displayName || "anonymous",
+            email: user?.email || "anonymous",
           },
         },
       });
@@ -75,12 +71,35 @@ const CheckoutForm = () => {
 
   return (
     <div>
-      <h1>Checkout</h1>
-      <form onSubmit={handelSubmit}>
-        <PaymentElement></PaymentElement>
-        <button className="btn">Submit</button>
-      </form>
-      <p className="text-red-500">{errorMessage}</p>
+      <div className="my-20">
+        <form onSubmit={handelSubmit}>
+          <CardElement
+            className="mb-5 bg-gray-50 p-5 rounded-md"
+            options={{
+              style: {
+                base: {
+                  fontSize: "16px",
+                  color: "#424770",
+                  "::placeholder": {
+                    color: "#aab7c4",
+                  },
+                },
+                invalid: {
+                  color: "#9e2146",
+                },
+              },
+            }}
+          ></CardElement>
+          <button
+            disabled={!stripe || !clientSecret}
+            type="submit"
+            className="btn"
+          >
+            Pay
+          </button>
+        </form>
+        <p className="text-red-500">{errorMessage}</p>
+      </div>
     </div>
   );
 };
