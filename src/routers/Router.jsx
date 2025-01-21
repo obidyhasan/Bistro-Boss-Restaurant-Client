@@ -18,6 +18,7 @@ import UpdateProduct from "../pages/dashboard/UpdateProduct/UpdateProduct";
 import Payment from "../pages/dashboard/Payment/Payment";
 import PaymentHistory from "../pages/dashboard/PaymentHistory/PaymentHistory";
 import UserHome from "../pages/dashboard/UserHome/UserHome";
+import AdminHome from "../pages/dashboard/AdminHome/AdminHome";
 
 const routers = createBrowserRouter([
   {
@@ -89,7 +90,11 @@ const routers = createBrowserRouter([
       // admin access
       {
         path: "/dashboard/admin/home",
-        element: <AdminRouter>Admin Home</AdminRouter>,
+        element: (
+          <AdminRouter>
+            <AdminHome></AdminHome>
+          </AdminRouter>
+        ),
       },
       {
         path: "/dashboard/admin/all-users",
