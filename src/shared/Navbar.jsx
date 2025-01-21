@@ -2,10 +2,12 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const Navbar = () => {
   const { user, userLogoutInFirebase } = useAuth();
   const [cart] = useCart();
+  const [isAdmin] = useAdmin();
 
   const navbarLink = (
     <div className="flex flex-col lg:flex-row gap-3 lg:gap-5">
@@ -39,6 +41,30 @@ const Navbar = () => {
       >
         Our Shop
       </NavLink>
+      {user && isAdmin && (
+        <NavLink
+          to={"/dashboard/admin/home"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-black lg:text-white underline"
+              : "text-black lg:text-white"
+          }
+        >
+          Admin Dashboard
+        </NavLink>
+      )}
+      {user && !isAdmin && (
+        <NavLink
+          to={"/dashboard/user/home"}
+          className={({ isActive }) =>
+            isActive
+              ? "text-black lg:text-white underline"
+              : "text-black lg:text-white"
+          }
+        >
+          Dashboard
+        </NavLink>
+      )}
     </div>
   );
 

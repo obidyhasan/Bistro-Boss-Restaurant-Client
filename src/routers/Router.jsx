@@ -17,6 +17,7 @@ import ManageAllProduct from "../pages/dashboard/ManageAllProduct/ManageAllProdu
 import UpdateProduct from "../pages/dashboard/UpdateProduct/UpdateProduct";
 import Payment from "../pages/dashboard/Payment/Payment";
 import PaymentHistory from "../pages/dashboard/PaymentHistory/PaymentHistory";
+import UserHome from "../pages/dashboard/UserHome/UserHome";
 
 const routers = createBrowserRouter([
   {
@@ -61,7 +62,7 @@ const routers = createBrowserRouter([
       },
       {
         path: "/dashboard/user/home",
-        element: <h1>Admin Home</h1>,
+        element: <UserHome></UserHome>,
       },
       {
         path: "/dashboard/user/reservation",
@@ -88,7 +89,7 @@ const routers = createBrowserRouter([
       // admin access
       {
         path: "/dashboard/admin/home",
-        element: <h1>Admin Home</h1>,
+        element: <AdminRouter>Admin Home</AdminRouter>,
       },
       {
         path: "/dashboard/admin/all-users",

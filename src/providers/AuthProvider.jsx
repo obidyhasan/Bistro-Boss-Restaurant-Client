@@ -67,13 +67,14 @@ const AuthProvider = ({ children }) => {
         axiosPublic.post("/api/jwt", userInfo).then((result) => {
           if (result.data.token) {
             localStorage.setItem("access-token", result.data.token);
+            setLoading(false);
           }
         });
       } else {
         //  Remove token if user is logged out
         localStorage.removeItem("access-token");
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => {
