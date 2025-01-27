@@ -19,6 +19,9 @@ import Payment from "../pages/dashboard/Payment/Payment";
 import PaymentHistory from "../pages/dashboard/PaymentHistory/PaymentHistory";
 import UserHome from "../pages/dashboard/UserHome/UserHome";
 import AdminHome from "../pages/dashboard/AdminHome/AdminHome";
+import PaymentFail from "../pages/dashboard/SSLPayment/PaymentFail";
+import PaymentCancel from "../pages/dashboard/SSLPayment/PaymentCancel";
+import PaymentSuccess from "../pages/dashboard/SSLPayment/PaymentSuccess";
 
 const routers = createBrowserRouter([
   {
@@ -45,6 +48,18 @@ const routers = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/payment-success",
+        element: <PaymentSuccess></PaymentSuccess>,
+      },
+      {
+        path: "/payment-fail",
+        element: <PaymentFail></PaymentFail>,
+      },
+      {
+        path: "/payment-cancel",
+        element: <PaymentCancel></PaymentCancel>,
       },
     ],
   },
@@ -128,9 +143,7 @@ const routers = createBrowserRouter([
           </AdminRouter>
         ),
         loader: ({ params }) =>
-          fetch(
-            `https://bistro-boss-restaurant-server-weld.vercel.app/api/menus/${params.id}`
-          ),
+          fetch(`https://bistro-boss-obidy.web.app/api/menus/${params.id}`),
       },
       {
         path: "/dashboard/admin/manage-booking",

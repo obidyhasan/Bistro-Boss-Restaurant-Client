@@ -10,7 +10,7 @@ const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("https://bistro-boss-restaurant-server-weld.vercel.app/api/reviews")
+    fetch("https://bistro-boss-obidy.web.app/api/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);

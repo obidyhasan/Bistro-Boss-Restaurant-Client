@@ -5,7 +5,7 @@ const useMenu = () => {
   // const [menus, setMenus] = useState([]);
   // const [loading, setLoading] = useState(true);
   // useEffect(() => {
-  //   fetch("https://bistro-boss-restaurant-server-weld.vercel.app/api/menus")
+  //   fetch("https://bistro-boss-obidy.web.app/api/menus")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setMenus(data);
